@@ -22,6 +22,10 @@ MySecondTest
 MyThirdTest
     Log    I am inside 3rd test    
     [Tags]    local
+    
+MyFourthTest
+    Log    I am inside 4th test    
+    [Tags]    local
 
     
 
