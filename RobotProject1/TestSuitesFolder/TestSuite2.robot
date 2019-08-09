@@ -6,7 +6,7 @@ Test Teardown    Close Browser
 *** Test Cases ***
 OrangeHRMLoginTest
     Open Browser    ${URL}    Chrome
-    Set Browser Implicit Wait    5
+    Set Browser Implicit Wait    10
     Title Should Be    OrangeHRM
     Input Text    id=txtUsername    &{LOGINDATA}[username]
     Input Password    id=txtPassword    &{LOGINDATA}[password]
@@ -21,7 +21,7 @@ AddEmployee
     Element Text Should Be    xpath=//h1    Add Employee  
     Input Text    id=firstName    &{EMPNAMEDATA}[firstname]
     Input Text    id=lastName    &{EMPNAMEDATA}[lastname]
-    ${empId}=    Get Text    id=employeeId
+    ${empId}    Get Value    id=employeeId
     Log To Console    Employee ID is ${empId}        
     Click Element    id=chkLogin
     Input Text    id=user_name    &{EMPLOGINDATA}[username]
@@ -29,8 +29,12 @@ AddEmployee
     Input Text    id=re_password    &{EMPLOGINDATA}[password]
     Click Button    id=btnSave
     Click Element    id=menu_pim_viewEmployeeList
+    Wait Until Element Is Visible    id=empsearch_id    
     Input Text    id=empsearch_id    ${empId}
+    Wait Until Page Contains Element    id=searchBtn    
     Click Button    id=searchBtn
+    Wait Until Element Is Visible    xpath=//table[@id='resultTable']/tbody/tr/td[3]/a[contains(text(),'FName')]    
+    Wait Until Element Is Visible    xpath=//table[@id='resultTable']/tbody/tr/td[4]/a[contains(text(),'LName')]    
     Element Text Should Be    xpath=//table[@id='resultTable']/tbody/tr/td[3]/a[contains(text(),'FName')]   &{EMPNAMEDATA}[firstname]
     Element Text Should Be    xpath=//table[@id='resultTable']/tbody/tr/td[4]/a[contains(text(),'LName')]   &{EMPNAMEDATA}[lastname]
     Click Element    xpath=//table[@id='resultTable']/tbody/tr/td[1]/input[@type='checkbox']
