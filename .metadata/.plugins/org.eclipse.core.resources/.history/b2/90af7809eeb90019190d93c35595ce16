@@ -1,0 +1,19 @@
+*** Setting ***
+Library    DatabaseLibrary
+Library    String
+Library    Dialogs
+*** Variable ***
+${DB_NAME}    TestDB
+${DB_USER_NAME}    testuser
+${DB_USER_PASSWORD}    test123
+${DB_HOST}    CPX-CMSUMI7OH6Y
+${DB_PORT}    1433
+${PREVIOUS_ROW_COUNT}
+${DATALOAD}
+${FIRSTNAME}
+${LASTNAME}
+*** Test Cases ***
+*** Keyword ***
+Connect
+    [Tags]    TestDB
+    Connect to Database    pymysql    ${DB_NAME}    ${DB_USER_NAME}    ${DB_USER_PASSWORD}    ${DB_HOST}    ${DB_PORT}
